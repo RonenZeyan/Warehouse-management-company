@@ -20,10 +20,11 @@ display: flex;
     margin:10px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
-.content .title-info{
-    width:50%;
+.content form .title-info{
+    width:500px;
     background-color: rgb(4,129,255);
     display:flex;
     justify-content: center;
@@ -34,37 +35,47 @@ display: flex;
     font-size: 30px;
 }
 
-.content .field-info{
-    width:35%;
+.content form .field-info{
+    width:400px;
     display:flex;
     justify-content: space-between;
-    margin:10px 0px;
+    margin:10px 50px;
     font-weight: bold;
     align-items: center;
 }
 
 
-.content .field-info input{
+.content form .field-info input{
     background-color: #123;
     margin:10px 0;
     padding:10px;
     width: 200px;
     border-radius: 10px;
+    font-style: italic;
+    font-weight: bold;
+    font-family: cursive;
 }
 
 .registerButton{
+    display: flex;
+    justify-content: center;
 }
 
 .registerButton input{
-    background-color: #123;
+    background-color: #126;
     width: 150px;
     margin:10px 0;
+    
     padding:10px;
     border-radius: 10px;
     font-weight: bold;
     font-size: 20px;
+    cursor: pointer;
+}
 
-
+.registerButton input:hover{
+    background-color: rgb(4,129,255);
+    transition: .5s;
 }
 
 

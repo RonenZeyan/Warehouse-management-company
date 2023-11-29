@@ -1,11 +1,22 @@
 {% extends 'base.html' %}
 {% include 'header.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}<title>Home</title>{% endblock %}
+
+{% block cssLink %}<link rel="stylesheet" href="{{url_for('static', filename = 'style.css')}}">{% endblock %}
 
 {% block body %}
 
 <div class="content">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages%}
+    {% for category,message in messages %}
+        <div class="flash">
+            {{message}}
+        </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
     <div class="title-info">
         <p>dashboard</p>
         <i class="fas fa-chart-bar"></i>

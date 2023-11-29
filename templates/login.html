@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %}<title>Register</title>{% endblock %}
+
+
+{% block cssLink %}<link rel="stylesheet" href="{{url_for('static', filename = 'registerstyle.css')}}"> {% endblock %}
+{% block body %}
+
+
+    <div class="content">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages%}
+        {% for category,message in messages %}
+            <div class="flash" style="color: red; border: 3px solid red; width: 30%;">
+                {{message}}
+            </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+            <form action="" method="POST">
+                {{form.hidden_tag()}}
+                <div class="title-info">
+                    <legend>Sign In to your account!</legend>
+                </div>
+                <div class="field-info">
+                    {{form.email.label()}} <br>
+                    {% if form.email.errors  %}
+                     {{form.email()}}<br> 
+                    {%for error in form.email.errors%}
+                    <p><br>{{error}}</p>
+                    {%endfor%}
+                    {%else%}
+                        {{form.email()}}
+                    {%endif%}
+                </div>
+                <div class="field-info">
+                    {{form.password.label()}}
+                    {% if form.password.errors  %}
+                    {{form.password()}}<br> 
+                   {%for error in form.password.errors%}
+                   <p>{{error}}</p>
+                   {%endfor%}
+                   {%else%}
+                       {{form.password()}}
+                   {%endif%}
+                </div>
+                <!-- the wtfForm can know that this submit in input and because of that if we make in css .registerButton input it will make the style in it -->
+                <div class="registerButton" > 
+                    {{form.submit()}}
+                </div>
+            </form>
+            <div>
+                {{form.remember()}}
+                {{form.remember.label()}}
+            </div>
+                <small style="font-weight: bold; margin-bottom: 5px;">
+                    <a href="#">Forget Password?</a>
+                </small>
+                <small style="font-weight: bold; margin-bottom: 5px;">
+                    Need An Account?
+                    <a href="{{url_for('register')}}">SignUp here</a>
+                </small>
+    </div>
+
+
+
+
+{% endblock %}

@@ -4,10 +4,10 @@ from wtforms.validators import DataRequired,Length,Email,Regexp,EqualTo
 
 
 class RegisterationForm(FlaskForm):
-    firstname=StringField('First Name:',validators=[DataRequired(),Length(min=2,max=25)])
-    lastname=StringField('Last Name:',validators=[DataRequired(),Length(min=2,max=25)])
-    Username=StringField('Username:',validators=[DataRequired(),Length(min=2,max=25)])
-    email = StringField('Email:',validators=[DataRequired(),Email()])
+    firstname=StringField('First Name: ',validators=[DataRequired(),Length(min=2,max=25)])
+    lastname=StringField('Last Name: ',validators=[DataRequired(),Length(min=2,max=25)])
+    Username=StringField('Username: ',validators=[DataRequired(),Length(min=2,max=25)])
+    email = StringField('Email: ',validators=[DataRequired(),Email()])
     password = PasswordField('Password:',validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password:',validators=[DataRequired(),EqualTo('password')])
     submit = SubmitField('Register')

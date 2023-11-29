@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %}<title>Register</title>{% endblock %}
+
+
+{% block cssLink %}<link rel="stylesheet" href="{{url_for('static', filename = 'registerstyle.css')}}"> {% endblock %}
+{% block body %}
+
+
+
+    <div class="content">
+            <form action="" method="POST">
+                {{form.hidden_tag()}}
+                <div class="title-info">
+                    <legend>Create an account!</legend>
+                </div>
+                <div class='field-info'>
+                    {{form.firstname.label()}}
+                    {% if form.firstname.errors  %}
+                        {%for error in form.firstname.errors%}
+                             <span>{{error}}</span>
+                        {%endfor%}
+                    {%else%}
+                        {{form.firstname()}}
+                    {%endif%}
+                </div>
+                <div class="field-info">
+                    {{form.lastname.label()}}
+                    {% if form.lastname.errors  %}
+                        {%for error in form.lastname.errors%}
+                             <span>{{error}}</span>
+                        {%endfor%}
+                    {%else%}
+                        {{form.lastname()}}
+                    {%endif%}
+                </div>
+                <div class="field-info">
+                    {{form.Username.label()}}
+                    {{form.Username()}}
+                </div>
+                <div class="field-info">
+                    {{form.email.label()}} <br>
+                    {% if form.email.errors  %}
+                     {{form.email()}}<br> 
+                    {%for error in form.email.errors%}
+                    <p><br>{{error}}</p>
+                    {%endfor%}
+                    {%else%}
+                        {{form.email()}}
+                    {%endif%}
+                </div>
+                <div class="field-info">
+                    {{form.password.label()}}
+                    {% if form.password.errors  %}
+                    {{form.password()}}<br> 
+                   {%for error in form.password.errors%}
+                   <p>{{error}}</p>
+                   {%endfor%}
+                   {%else%}
+                       {{form.password()}}
+                   {%endif%}
+                </div>
+                <div class="field-info">
+                    {{form.confirm_password.label()}}
+                    {% if form.confirm_password.errors  %}
+                        {{form.confirm_password()}}
+                        {%for error in form.confirm_password.errors%}
+                             <p><br>{{error}}</p>
+                        {%endfor%}
+                    {%else%}
+                       {{form.confirm_password()}}
+                    {%endif%}
+                </div>
+                <!-- the wtfForm can know that this submit in input and because of that if we make in css .registerButton input it will make the style in it -->
+                <div class="registerButton" > 
+                    {{form.submit()}}
+                </div>
+            </form>
+            <div>
+                <small>
+                    Already have an Account?
+                    <a href="{{url_for('login')}}">Sign in</a>
+                </small>
+            </div>
+    </div>
+
+
+
+
+{% endblock %}

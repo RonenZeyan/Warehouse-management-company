@@ -1,5 +1,6 @@
-from flask import Flask,render_template,request,redirect,url_for
+from flask import Flask,render_template,request,redirect,url_for,flash
 from flask_sqlalchemy import SQLAlchemy
+from forms import RegisterationForm,LoginForm
 
 app = Flask(__name__)
 app.secret_key='Secret Key'
@@ -43,6 +44,27 @@ class User(db.Model):
 def index():
     # mydata = Data.query.all()
     return render_template('test.html')
+
+
+@app.route('/register', methods=['GET','POST'])
+def register():
+    form = RegisterationForm()
+    if form.validate_on_submit():
+        flash(f"account created successfully for {form.Username.data}")
+        return redirect(url_for('index'))
+    return render_template('register.html',form=form)
+
+@app.route('/login', methods=['GET','POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        if(form.email.data =='ronen@gmail.com'
+        and form.password.data == '123456'):
+            flash('you have been logged in successfully!') 
+            return redirect(url_for('index'))
+        else:
+            flash('one or more fields is not correct')
+    return render_template('login.html',form=form)
 
 
 @app.route('/products',methods=['GET','POST'])
