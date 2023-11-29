@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %}Display Employee{% endblock %}
+
+{% block body %}
+
+<h1>{{mydata.name}}</h1>
+<h3>{{mydata.email}}</h3>
+<h3>{{mydata.phone}}</h3>
+
+{% endblock %}

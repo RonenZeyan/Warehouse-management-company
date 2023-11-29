@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+<div class="content">
+    <div class="title-info">
+        <p>dashboard</p>
+        <i class="fas fa-chart-bar"></i>
+    </div>
+
+    <div class="data-info">
+        <div class="box">
+            <i class="fas fa-user"></i>
+            <div class="data">
+                <p>user</p>
+                <span>100</span>
+            </div>
+        </div>
+        <div class="box">
+            <i class="fas fa-pen"></i>
+            <div class="data">
+                <p>posts</p>
+                <span>32</span>
+            </div>
+        </div>
+        <div class="box">
+            <i class="fas fa-table"></i>
+            <div class="data">
+                <p>products</p>
+                <span>543</span>
+            </div>
+        </div>
+        <div class="box">
+            <i class="fas fa-dollar"></i>
+            <div class="data">
+                <p>revanue</p>
+                <span>$143</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="title-info">
+        <p>products</p>
+        <i class="fas fa-table"></i>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>product</th>
+                <th>price</th>
+                <th>count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>tv</td>
+                <td><span class="price">130$</span></td>
+                <td><span class="count">50</span></td>
+            </tr>
+            <tr>
+                <td>phone</td>
+                <td><span class="price">130$</span></td>
+                <td><span class="count">534</span></td>
+            </tr>
+            <tr>
+                <td>tablet</td>
+                <td><span class="price">130$</span></td>
+                <td><span class="count">123</span></td>
+            </tr>
+            <tr>
+                <td>playstation</td>
+                <td><span class="price">130$</span></td>
+                <td><span class="count">543</span></td>
+            </tr>
+            <tr>
+                <td>xbox</td>
+                <td><span class="price">130$</span></td>
+                <td><span class="count">757</span></td>
+            </tr>
+            <tr>
+                <td>Ipad</td>
+                <td><span class="price">130$</span></td>
+                <td><span class="count">13124</span></td>
+            </tr>
+            <tr>
+                <td>macbook</td>
+                <td><span class="price">130$</span></td>
+                <td><span class="count">6545</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

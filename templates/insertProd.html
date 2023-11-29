@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %}Insert New Product{% endblock %}
+
+{% block body %}
+
+<form action="" method="post">
+
+    <div>
+        <label for="productName">productName:</label>
+        <input type="text" name="productName">
+    </div>
+    <div>
+        <label for="productPrice">productPrice:</label>
+        <input type="text" name="productPrice">
+    </div>
+    <div>
+        <label for="productCount">productCount:</label>
+        <input type="text" name="productCount">
+    </div>
+    <div>
+        <input type="submit" value="add new product">
+    </div>
+
+
+</form>
+
+{% endblock %}

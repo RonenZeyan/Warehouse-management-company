@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Flask CRUD{% endblock %}
+
+{% block body %}
+
+<div class="menu">
+
+    <ul>
+        <li class="profile">
+            <div class="imagebox">
+                <img src="{{url_for('static',filename='images/defaultUserPhoto.png')}}" alt="profile">
+            </div>
+            <h2>wolf betterdog</h2>
+        </li>
+        <li>
+            <a class="active" href="#">
+                <i class="fas fa-home"></i>
+                <p>dashboard</p>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-user-group"></i>
+                <p>clients</p>
+            </a>
+        </li>
+        <li>
+            <a href="{{url_for('InsertProducts')}}">
+                <i class="fas fa-table"></i>
+                <p>products</p>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-chart-pie"></i>
+                <p>charts</p>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-pen"></i>
+                <p>posts</p>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-star"></i>
+                <p>favorite</p>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fas fa-cog"></i>
+                <p>settings</p>
+            </a>
+        </li>
+        <li class="log-out">
+            <a href="#" >
+                <i class="fas fa-sign-out"></i>
+                <p>Log Out</p>
+            </a>
+        </li>
+    </ul>
+
+</div>
+
+{% endblock %}
