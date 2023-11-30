@@ -36,8 +36,15 @@
                     {%endif%}
                 </div>
                 <div class="field-info">
-                    {{form.Username.label()}}
-                    {{form.Username()}}
+                    {{form.Username.label()}} <br>
+                    {% if form.Username.errors  %}
+                     {{form.Username()}}<br> 
+                    {%for error in form.Username.errors%}
+                    <p><br>{{error}}</p>
+                    {%endfor%}
+                    {%else%}
+                        {{form.Username()}}
+                    {%endif%}
                 </div>
                 <div class="field-info">
                     {{form.email.label()}} <br>
