@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %}<title>Home</title>{% endblock %}
+{% block cssLink %}<link rel="stylesheet" href="{{url_for('static', filename = 'homestyle.css')}}"> {% endblock %}
+
+{% block body %}
+
+<div class="contenter">
+
+    <div class="homeHeader">
+        <img src="../static/images/homePic.jpg" alt="">
+        <p>Scalable and Flexible <br>
+            Pre-built WareHouses</p>
+    </div>
+
+
+    <div class="homeContent" style="color: rgb(8, 8, 87);">
+        <p>
+            <h1 style="margin-bottom: 20px; color: rgb(8, 8, 87);">rent now</h1>
+            Pre-built warehouses with the possibility of expansion,
+            <br>They are great and efficient for companies or stores that want to store their products or inventory.
+            <br>Low rental price. <br>
+            We have warehouses for rent all over the country, north south central Israel.
+            <h3>limited supply. Order your units now</h3>
+        </p>
+    </div>
+
+    <div class="Features">
+            <h1>Features</h1>
+            <ul>
+                <li>starting size 500m</li>
+                <li>10m height</li>
+                <li>scalable size up to 5000m</li>
+                <li>lLights that cover the entire warehouse</li>
+                <li>Track and Mangement your Stored Products</li>
+                <li>Outside parking for trucks</li>
+            </ul>
+    </div>
+
+</div>
+
+{% endblock %}
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/homestyle.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+</body>
+</html> -->

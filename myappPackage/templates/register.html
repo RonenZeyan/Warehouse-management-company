@@ -36,22 +36,22 @@
                     {%endif%}
                 </div>
                 <div class="field-info">
-                    {{form.Username.label()}} <br>
+                    {{form.Username.label()}}
                     {% if form.Username.errors  %}
-                     {{form.Username()}}<br> 
-                    {%for error in form.Username.errors%}
-                    <p><br>{{error}}</p>
-                    {%endfor%}
+                        {{form.Username(class_='inputdanger')}} 
+                        {%for error in form.Username.errors%}
+                            <p>{{error}}</p>
+                        {%endfor%}
                     {%else%}
                         {{form.Username()}}
                     {%endif%}
                 </div>
                 <div class="field-info">
-                    {{form.email.label()}} <br>
+                    {{form.email.label()}} 
                     {% if form.email.errors  %}
-                     {{form.email()}}<br> 
+                     {{form.email(class_='inputdanger')}}
                     {%for error in form.email.errors%}
-                    <p><br>{{error}}</p>
+                    <p>{{error}}</p>
                     {%endfor%}
                     {%else%}
                         {{form.email()}}

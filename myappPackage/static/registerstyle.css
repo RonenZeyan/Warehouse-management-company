@@ -38,6 +38,7 @@ display: flex;
 .content form .field-info{
     width:400px;
     display:flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin:10px 50px;
     font-weight: bold;
@@ -55,6 +56,18 @@ display: flex;
     font-weight: bold;
     font-family: cursive;
 }
+
+.inputdanger{
+    border: 2px solid darkred;
+    
+}
+
+.content form .field-info p{
+    font-size: 10px;
+    margin-left: 180px;
+    color: darkred;
+}
+
 
 .registerButton{
     display: flex;

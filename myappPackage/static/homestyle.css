@@ -1,0 +1,70 @@
+
+
+.contenter{
+
+background-color: #001;
+width: 100%;
+}
+
+.homeHeader{
+    width: 100%;
+    height: 470px;
+}
+
+.homeHeader img{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.homeHeader p{
+  position: relative;
+  bottom: 130px;
+  left:50px;
+  font-size: 50px;
+  color: #fff;
+}
+
+
+.homeContent{
+    width: 100%;
+    font-size: 25px;
+    background-size: cover;
+    background-color: #fff;
+    padding: 50px;
+}
+
+
+.homeContent h3{
+    
+    color: red;
+    margin-top: 20px;
+}
+
+.Features{
+    margin-top: 30px;
+    margin-left: 50px;
+    width: 100%;
+    
+}
+
+.Features h1{
+    color: red;
+}
+
+.Features ul{
+    margin-left: 50px;
+    display: grid;
+    grid-template-columns: auto auto ;
+    
+}
+
+.Features li{
+
+    font-size: 20px;
+    margin: 20px;
+    color: #fff;
+
+}
+

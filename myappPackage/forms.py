@@ -21,7 +21,7 @@ class RegisterationForm(FlaskForm):
     def validate_email(self,email):
         user = User.query.filter_by(email=email.data).first()
         if user:
-            raise ValidationError("email is already exists,Please choose another emai!!!")
+            raise ValidationError("email is already exists,Please choose another email!!!")
 
 class LoginForm(FlaskForm):
     email = StringField('Email:',validators=[DataRequired(),Email()])
