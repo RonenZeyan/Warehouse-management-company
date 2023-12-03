@@ -27,6 +27,7 @@ class User(db.Model,UserMixin):
     email = db.Column(db.String(100),unique=True,nullable=False)
     password = db.Column(db.String(60),nullable=False)
     products = db.relationship('Product',backref='owner',lazy=True) #user have one to many relationship
+    bio = db.Column(db.Text,nullable=True)
 
     def __init__(self,username,firstName,lastName,email,password):
         self.username=username

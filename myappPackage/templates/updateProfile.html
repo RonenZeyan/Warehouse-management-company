@@ -1,0 +1,62 @@
+
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %}<title>Update Profile</title>{% endblock %}
+{% block cssLink %}<link rel="stylesheet" href="{{url_for('static', filename = 'registerstyle.css')}}"> {% endblock %}
+
+{% block body %}
+
+<div class="content">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {{profile_form.hidden_tag()}}
+        <div class="title-info">
+            <legend>Update Profile!</legend>
+        </div>
+        <div class="img-info">
+            {% if image_file %}
+            <img src="{{image_file}}" alt="">
+            
+            {%else%}
+            {{profile_form.picture()}}
+            {%endif%}
+        </div>
+        <div class='field-info'>
+            <label for="">First name:</label>
+            <input disabled type="text" name="last" value="{{current_user.firstName}}" id="">
+        </div>
+        <div class="field-info">
+            <label for="">Last name:</label>
+            <input disabled type="text" name="last" id="" value="{{current_user.lastName}}">
+        </div>
+        <div class="field-info">
+            <!-- <label for="">Username:</label> -->
+            <!-- <input type="text" name="last" id="" value="{{current_user.username}}"> -->
+            {{profile_form.Username.label()}}
+            {{profile_form.Username}}
+        </div>
+        <div class="field-info">
+            <!-- <label for="">Email:</label> -->
+            <!-- <input type="text" name="last" id="" value="{{current_user.email}}"> -->
+            {{profile_form.email.label()}}
+            {{profile_form.email}}
+        </div>
+        <div class="field-info">
+            <!-- <label for="">Biography</label> <br/>
+            <textarea name="textarea" id="" cols="30" rows="5"></textarea> -->
+            {{profile_form.bio.label()}}
+            {{profile_form.bio}}
+        </div>
+        <!-- <div class="field-info">
+            {{profile_form.picture.label}}
+            {{profile_form.picture()}}
+        </div> -->
+        <!-- the wtfForm can know that this submit in input and because of that if we make in css .registerButton input it will make the style in it -->
+        <div class="registerButton" > 
+            {{profile_form.submit()}}
+        </div>
+    </form>
+
+
+
+{% endblock %}
