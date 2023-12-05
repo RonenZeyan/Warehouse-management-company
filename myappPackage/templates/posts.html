@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %}<title>Insert New Product</title>{% endblock %}
+{% block cssLink %}<link rel="stylesheet" href="{{url_for('static', filename = 'registerstyle.css')}}"> {% endblock %}
+
+{% block body %}
+<div class="content">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages%}
+    {% for category,message in messages %}
+        <div class="flash">
+            {{message}}
+        </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <table class="tableOfPosts">
+        <tr><a href="/posts/create_post"><button style="background-color: rgb(4,129,255); padding: 10px 5px; margin-bottom:10px ; position: relative; right: -550px;">Add New Post</button></a>
+        </tr>
+        <tr><th>recent posts</th><th>user</th></tr>
+        {%for post in posts|reverse%}
+        <tr><td><a href="{{url_for('displayPost',id=post.id)}}">{{post.title}}</a></td><td><p>{{post.date_posted.day}}/{{post.date_posted.month}}/{{post.date_posted.year}}</p><a href="/user/{{post.ownerID}}">{{users[post.ownerID-1].username}}</a></td></tr>
+        {%endfor%}
+    </table>
+    
+
+</div>
+
+
+{% endblock %}

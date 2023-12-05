@@ -22,6 +22,7 @@ display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 }
 .content form .title-info{
     width:500px;
@@ -83,6 +84,10 @@ input[type="file"]::file-selector-button {
     font-family: cursive;
 }
 
+.content form .field-info textarea{
+    width: 100%;
+}
+
 .inputdanger{
     border: 2px solid darkred;
     
@@ -112,10 +117,39 @@ input[type="file"]::file-selector-button {
     cursor: pointer;
 }
 
+
 .registerButton input:hover{
     background-color: rgb(4,129,255);
     transition: .5s;
 }
 
+.tableOfPosts{
+    width: 100%;
+    text-align: left;
+    border-spacing: 0;
+    
+}
+.tableOfPosts tr th{
+    width: 100%;
+    border-radius: 0px;
+}
+.tableOfPosts tr td
+{
+    background-color: #123;
+    border-radius: 0px; 
+    padding-bottom: 20px;  
+    border-bottom: 1px solid grey;  
+    padding-right: 40px;
+}
+.tableOfPosts tr td a
+{
+    color: #00e;
+    text-decoration: none; 
+    
+}
+
+.ckeditor{
+    margin: 25px;
+}
 
 

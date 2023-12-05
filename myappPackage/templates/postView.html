@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %}<title>Insert New Product</title>{% endblock %}
+{% block cssLink %}<link rel="stylesheet" href="{{url_for('static', filename = 'registerstyle.css')}}"> {% endblock %}
+
+{% block body %}
+<div class="ckeditor">
+    {{mydata.title}}
+    <hr>
+    {{mydata.content|safe}}
+</div>
+
+
+{% endblock %}

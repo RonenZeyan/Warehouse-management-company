@@ -67,7 +67,19 @@
             </tr>
         </thead>
         <tbody>
+
+            {% for product in products %}
+
             <tr>
+                <td>{{product.productName}}</td>
+                <td><span class="price">{{product.price}}</span></td>
+                <td><span class="count">{{product.count}}</span></td>
+            </tr>  
+
+            {%endfor%}
+
+
+            <!-- <tr>
                 <td>tv</td>
                 <td><span class="price">130$</span></td>
                 <td><span class="count">50</span></td>
@@ -101,7 +113,7 @@
                 <td>macbook</td>
                 <td><span class="price">130$</span></td>
                 <td><span class="count">6545</span></td>
-            </tr>
+            </tr> -->
         </tbody>
     </table>
 

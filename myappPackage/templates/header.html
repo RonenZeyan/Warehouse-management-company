@@ -9,6 +9,7 @@
         <li class="profile">
             <div class="imagebox">
                 <img src="{{url_for('static',filename='images/'+current_user.profileIMG)}}" alt="profile">
+
             </div>
             <h2>{{current_user.username}}</h2>
         </li>
@@ -37,7 +38,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="{{url_for('posts')}}">
                 <i class="fas fa-pen"></i>
                 <p>posts</p>
             </a>

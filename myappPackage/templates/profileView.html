@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %}<title>Insert New Product</title>{% endblock %}
+{% block cssLink %}<link rel="stylesheet" href="{{url_for('static', filename = 'registerstyle.css')}}"> {% endblock %}
+
+{% block body %}
+<div class="content">
+    <div class="imagebox" style="width: 150px; height: 150px;">
+    <img src="{{url_for('static',filename='images/'+mydata.profileIMG)}}" alt="photo">
+    </div>
+    <h1>{{mydata.username}}</h1>
+    <h3>{{mydata.email}}</h3>
+</div>
+
+
+{% endblock %}

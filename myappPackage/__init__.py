@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_migrate import Migrate
+from flask_ckeditor import CKEditor
 
 
 app = Flask(__name__)
@@ -16,6 +17,7 @@ app.app_context().push()
 
 bcrypt = Bcrypt(app)
 login_manger = LoginManager(app)
+ckeditor = CKEditor(app)
 migrate = Migrate(app,db)
 
 from myappPackage import routes

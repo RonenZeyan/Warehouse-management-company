@@ -9,25 +9,24 @@
     <form action="" method="post">
         {{form.hidden_tag()}}
         <div class="title-info">
-            <legend>Add new Product</legend>
+            <legend>Add new Post</legend>
         </div>
         <div class="field-info">
-            {{form.productName.label()}}
-            {{form.productName()}}
+            {{form.title.label()}}
+            {{form.title()}}
         </div>
-        <div class="field-info">
-            {{form.price.label()}}
-            {{form.price()}}
+        <div class="field-info" style="width: 100%;">
+            {{form.content.label()}}
+            {{form.content()}}
         </div>
-        <div class="field-info">
-            {{form.count.label()}}
-            {{form.count()}}
-        </div>
+  
         <div class="registerButton">
             {{form.submit()}}
         </div>
 
 
     </form>
+    {{ckeditor.load()}}
+    {{ckeditor.config(name='content')}}
 </div>
 {% endblock %}
