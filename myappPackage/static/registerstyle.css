@@ -137,13 +137,14 @@ input[type="file"]::file-selector-button {
 {
     background-color: #123;
     border-radius: 0px; 
-    padding-bottom: 20px;  
+    padding-bottom: 10px;  
     border-bottom: 1px solid grey;  
     padding-right: 40px;
 }
 .tableOfPosts tr td a
 {
-    color: #00e;
+    color: #ffa;
+    font-weight: bold;
     text-decoration: none; 
     
 }

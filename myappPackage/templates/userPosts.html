@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %}<title>{{current_user.username}} posts</title>{% endblock %}
+{% block cssLink %}<link rel="stylesheet" href="{{url_for('static', filename = 'registerstyle.css')}}"> {% endblock %}
+
+{% block body %}
+<div class="content">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages%}
+    {% for category,message in messages %}
+        <div class="flash">
+            {{message}}
+        </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <table class="tableOfPosts">
+        <tr><th>posts</th><th>action</th></tr>
+        {%for post in current_user.posts|reverse%}
+        <tr><td><a href="{{url_for('displayPost',id=post.id)}}">{{post.title}}</a></td><td><a style="color: #fff;background-color: rgb(4,129,255); margin: 0 10px; padding:5px 10px; border-radius: 5px;" href="{{url_for('update_post',title=post.title)}}">Update</a><a style="color: #fff;background-color: red; padding:5px 10px; border-radius: 5px;" href="{{url_for('delete_post',title=post.title)}}">Delete</a></td></tr>
+        {%endfor%}
+    </table>
+    
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %}<title>Update post</title>{% endblock %}
+{% block cssLink %}<link rel="stylesheet" href="{{url_for('static', filename = 'registerstyle.css')}}"> {% endblock %}
+
+{% block body %}
+<div class="content">
+    <form action="" method="POST">
+        {{form.hidden_tag()}}
+        <div class="title-info">
+            <legend>Add new Post</legend>
+        </div>
+        <div class="field-info">
+            {{form.title.label()}}
+            {{form.title()}}
+        </div>
+        <div class="field-info" style="width: 100%;">
+            {{form.content.label()}}
+            {{form.content()}}
+        </div>
+  
+        <div class="registerButton">
+            {{form.submit()}}
+        </div>
+
+
+    </form>
+    {{ckeditor.load()}}
+    {{ckeditor.config(name='content')}}
+</div>
+{% endblock %}

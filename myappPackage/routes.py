@@ -1,7 +1,7 @@
 import secrets
 from myappPackage.models import Product,User,Post
-from flask import render_template,request,redirect,url_for,flash
-from myappPackage.forms import RegisterationForm,LoginForm,UpdateProfileForm,NewProductForm,NewPostForm
+from flask import render_template,request,redirect,url_for,flash,abort
+from myappPackage.forms import RegisterationForm,LoginForm,UpdateProfileForm,NewProductForm,NewPostForm,UpdatePostForm
 from myappPackage import app,bcrypt,db
 from flask_login import login_user,current_user,logout_user,login_required
 import os
@@ -79,8 +79,47 @@ def posts():
 
 @app.route('/posts/<id>')
 def displayPost(id):
-    mydata = Post.query.get(id)
+    mydata = Post.query.get_or_404(id)
     return render_template('postView.html',mydata=mydata)
+
+@app.route('/posts/user_posts',methods=['GET','POST'])
+def user_posts():
+    return render_template('userPosts.html')
+
+# /<title>
+@app.route('/posts/user_posts/<title>/update',methods=['GET','POST'])
+def update_post(title):
+    get_post = Post.query.filter_by(title=title).first()
+    post_id = get_post.id if get_post else None
+    post = Post.query.get_or_404(post_id)
+    if post.ownerID !=current_user.id:
+        abort(403) #in case another user trying to access another user post
+    form = UpdatePostForm()
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.content = form.content.data
+        db.session.commit()
+        flash('update done successfully!!')
+        return redirect(url_for('user_posts'))
+    elif request.method =='GET':
+        form.title.data = post.title
+        form.content.data = post.content
+
+    return render_template('updatePost.html',form=form)
+
+@app.route('/posts/user_posts/<title>/accept_delete',methods=['GET','POST'])
+def delete_post(title):
+    get_post = Post.query.filter_by(title=title).first()
+    post_id = get_post.id if get_post else None
+    post = Post.query.get_or_404(post_id)
+    if post.ownerID !=current_user.id:
+        abort(403) #in case another user trying to access another user post
+    db.session.delete(post)
+    db.session.commit()
+    flash('delete dont successfully')
+    return redirect(url_for('user_posts'))
+
+
 
 @app.route('/posts/create_post', methods=['GET','POST'])
 @login_required
@@ -121,9 +160,11 @@ def updateProfile():
             image_file=None
     return render_template('updateProfile.html',profile_form=profile_form,image_file=image_file)
 
-@app.route('/user/<id>')
-def displayuser(id):
-    mydata = User.query.get(id)
+@app.route('/user/<username>')
+def displayuser(username):
+    myuser = User.query.filter_by(username=username).first()
+    mydata_id = myuser.id if myuser else None
+    mydata = User.query.get_or_404(mydata_id)
     return render_template('profileView.html',mydata=mydata)
 
 @app.route('/logout')

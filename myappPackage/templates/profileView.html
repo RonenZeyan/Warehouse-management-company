@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% include 'header.html' %}
 
-{% block title %}<title>Insert New Product</title>{% endblock %}
+{% block title %}<title>{{mydata.username}}</title>{% endblock %}
 {% block cssLink %}<link rel="stylesheet" href="{{url_for('static', filename = 'registerstyle.css')}}"> {% endblock %}
 
 {% block body %}

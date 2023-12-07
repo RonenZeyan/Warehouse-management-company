@@ -65,5 +65,9 @@ class NewProductForm(FlaskForm):
 class NewPostForm(FlaskForm):
     title = StringField('Post Title:',validators=[DataRequired(),Length(max=100)])
     content = CKEditorField('Content Title:',validators=[DataRequired()],render_kw={'rows': '30'})
-    
     submit = SubmitField('Post')
+
+
+
+class UpdatePostForm(NewPostForm):
+    submit = SubmitField('Update')

@@ -30,12 +30,14 @@
                 <span>100</span>
             </div>
         </div>
-        <div class="box">
-            <i class="fas fa-pen"></i>
-            <div class="data">
-                <p>posts</p>
-                <span>32</span>
-            </div>
+        <a style="text-decoration: none;" href="{{url_for('user_posts')}}">
+            <div class="box">
+                <i class="fas fa-pen"></i>
+                <div class="data">
+                    <p>posts</p>
+                    <span>{{current_user.posts|length}}</span>
+                </div>
+        </a>
         </div>
         <div class="box">
             <i class="fas fa-table"></i>
