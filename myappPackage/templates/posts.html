@@ -16,13 +16,33 @@
     {% endif %}
     {% endwith %}
     <table class="tableOfPosts">
-        <tr><a href="/posts/create_post"><button style="background-color: rgb(4,129,255); padding: 10px 5px; margin:10px 0 ; position: relative; right: -550px;">Add New Post</button></a>
+        <tr><a href="/posts/create_post"><button style="background-color: rgba(4, 130, 255); padding: 10px 5px; margin:10px 0 ; position: relative; right: -550px;border-radius: 10px; border-style: none;" onmouseover="this.style.backgroundColor='rgb(4,129,255,0.527)'"onmouseout="this.style.backgroundColor='rgb(4,129,255)'">Add New Post</button></a>
         </tr>
         <tr><th>recent posts</th><th>user</th></tr>
-        {%for post in posts|reverse%}
+        {%for post in posts.items|reverse%}
         <tr><td><a href="{{url_for('displayPost',id=post.id)}}">{{post.title}}</a></td><td><p>{{post.date_posted.day}}/{{post.date_posted.month}}/{{post.date_posted.year}}</p><span>   {{ post.date_posted.strftime("%H:%M") }}</span><br><a href="/user/{{users[post.ownerID-1].username}}"><small>{{users[post.ownerID-1].username}}</small></a></td></tr>
         {%endfor%}
     </table>
+    <nav">
+        <ul style="display: flex; justify-content: flex-end; align-items: center;">
+            {% for post_num_page in posts.iter_pages() %}
+            {% if post_num_page %}
+              {% if posts.page == post_num_page %}
+              <li>
+                <a style="background-color: rgb(4,129,255);" href="{{url_for('posts',page=post_num_page)}}">{{post_num_page}}</a>
+            </li>
+              {% else %}
+                <li>
+                    <a href="{{url_for('posts',page=post_num_page)}}">{{post_num_page}}</a>
+                </li>
+              {%endif%}
+            {%else%}
+            <span>...</span>
+            {% endif %}
+            {% endfor %}
+
+        </ul>
+    </nav>
     
 
 </div>

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% include 'header.html' %}
 
-{% block title %}<title>Insert New Product</title>{% endblock %}
+{% block title %}<title>Insert New Post</title>{% endblock %}
 {% block cssLink %}<link rel="stylesheet" href="{{url_for('static', filename = 'registerstyle.css')}}"> {% endblock %}
 
 {% block body %}
@@ -26,7 +26,7 @@
 
 
     </form>
-    {{ckeditor.load()}}
+    {{ckeditor.load(custom_url=url_for('static',filename='ckeditor/ckeditor.js'))}}
     {{ckeditor.config(name='content')}}
 </div>
 {% endblock %}

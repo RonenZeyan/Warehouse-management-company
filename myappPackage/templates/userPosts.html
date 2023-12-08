@@ -17,11 +17,30 @@
     {% endwith %}
     <table class="tableOfPosts">
         <tr><th>posts</th><th>action</th></tr>
-        {%for post in current_user.posts|reverse%}
+        {%for post in posts.items|reverse%}
         <tr><td><a href="{{url_for('displayPost',id=post.id)}}">{{post.title}}</a></td><td><a style="color: #fff;background-color: rgb(4,129,255); margin: 0 10px; padding:5px 10px; border-radius: 5px;" href="{{url_for('update_post',title=post.title)}}">Update</a><a style="color: #fff;background-color: red; padding:5px 10px; border-radius: 5px;" href="{{url_for('delete_post',title=post.title)}}">Delete</a></td></tr>
         {%endfor%}
     </table>
-    
+    <nav">
+        <ul style="display: flex; justify-content: flex-end; align-items: center;">
+            {% for post_num_page in posts.iter_pages() %}
+            {% if post_num_page %}
+              {% if posts.page == post_num_page %}
+              <li>
+                <a style="background-color: rgb(4,129,255);" href="{{url_for('user_posts',page=post_num_page)}}">{{post_num_page}}</a>
+            </li>
+              {% else %}
+                <li>
+                    <a href="{{url_for('user_posts',page=post_num_page)}}">{{post_num_page}}</a>
+                </li>
+              {%endif%}
+            {%else%}
+            <span>...</span>
+            {% endif %}
+            {% endfor %}
+
+        </ul>
+    </nav>
 
 </div>
 

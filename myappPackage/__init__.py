@@ -11,7 +11,7 @@ app.secret_key='Secret Key'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@localhost/crud'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+app.config['CKEDITOR_ENABLE_CODESNIPPET'] = True
 db = SQLAlchemy(app)
 app.app_context().push()
 

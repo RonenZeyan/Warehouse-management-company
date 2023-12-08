@@ -14,11 +14,12 @@ display: flex;
 overflow-y: scroll;
 overflow-x: hidden;
 margin-top: 20px;
+
 }
 
 .content{
     width: 100%;
-    
+    color:white;
     
 }
 .content .title-info{
@@ -65,6 +66,7 @@ flex-shrink: 0;
     height: 100vh;
     padding: 20px;
     transition: .5s;
+    color:white;
     
 }
 
@@ -228,6 +230,7 @@ flex-shrink: 0;
     height: 100vh;
     padding: 20px;
     transition: .5s;
+    color:white;
     
 
 }

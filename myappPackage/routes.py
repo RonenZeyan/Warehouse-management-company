@@ -73,7 +73,8 @@ def about():
 
 @app.route('/posts')
 def posts():
-    posts = Post.query.all()
+    page = request.args.get("page", 1, type=int)
+    posts = Post.query.paginate(page=page,per_page=7)
     users = User.query.all()
     return render_template('posts.html',posts=posts,users=users)
 
@@ -84,7 +85,9 @@ def displayPost(id):
 
 @app.route('/posts/user_posts',methods=['GET','POST'])
 def user_posts():
-    return render_template('userPosts.html')
+    page = request.args.get("page", 1, type=int)
+    posts = Post.query.filter_by(ownerID=current_user.id).paginate(page=page,per_page=5)
+    return render_template('userPosts.html',posts=posts)
 
 # /<title>
 @app.route('/posts/user_posts/<title>/update',methods=['GET','POST'])
@@ -132,8 +135,6 @@ def create_post():
         db.session.commit()
         flash('your Post added successfully')
         return redirect(url_for("posts"))
-    else:
-        flash('your Post not added successfully')
 
     return render_template('create_post.html',form=new_post_form)
 
@@ -160,7 +161,7 @@ def updateProfile():
             image_file=None
     return render_template('updateProfile.html',profile_form=profile_form,image_file=image_file)
 
-@app.route('/user/<username>')
+@app.route('/user/<username>',methods=['GET'])
 def displayuser(username):
     myuser = User.query.filter_by(username=username).first()
     mydata_id = myuser.id if myuser else None
