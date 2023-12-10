@@ -1,0 +1,15 @@
+
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %}<title>403 error</title>{% endblock %}
+<!-- {% block cssLink %}<link rel="stylesheet" href="{{url_for('static', filename = 'style.css')}}"> {% endblock %} -->
+
+{% block body %}
+<div style="display: flex; flex-direction: column; margin: 25px;">
+<h1 style="margin: 25px;">you dont have perrmission to access this page (403)</h1>
+<hr>
+<p style="margin: 25px; font-size: 25px;">please check your account</p>
+</div>
+
+{% endblock %}

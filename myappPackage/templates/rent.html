@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %}<title>Search Users</title>{% endblock %}
+{% block cssLink %}<link rel="stylesheet" href="{{url_for('static', filename = 'css/rent.css')}}"> {% endblock %}
+
+{% block body %}
+
+<div class="content">
+    <div class="card">
+        <h3>personal rent</h3>
+        <ul style="height: 100px;">
+            <li>git 1</li>
+            <li>git 2</li>
+            <li>git 3</li>
+            <li>git 4</li>
+        </ul>
+        <input id="rentButton" type="button" name="rent now" value="rent now">
+       
+    </div>
+    <div class="card">
+        <h3>personal rent</h3>
+        <ul>
+            <li>git 1</li>
+            <li>git 2</li>
+            <li>git 3</li>
+            <li>git 4</li>
+        </ul>
+        <input id="rentButton" type="button" name="rent now" value="rent now">
+    </div>
+    <div class="card">
+        <h3>personal rent</h3>
+        <ul>
+            <li>git 1</li>
+            <li>git 2</li>
+            <li>git 3</li>
+            <li>git 4</li>
+        </ul>
+        <input id="rentButton" type="button" name="rent now" value="rent now">
+    </div>
+</div>
+
+
+{% endblock %}

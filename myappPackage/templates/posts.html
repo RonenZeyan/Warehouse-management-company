@@ -19,7 +19,8 @@
         <tr><a href="/posts/create_post"><button style="background-color: rgba(4, 130, 255); padding: 10px 5px; margin:10px 0 ; position: relative; right: -550px;border-radius: 10px; border-style: none;" onmouseover="this.style.backgroundColor='rgb(4,129,255,0.527)'"onmouseout="this.style.backgroundColor='rgb(4,129,255)'">Add New Post</button></a>
         </tr>
         <tr><th>recent posts</th><th>user</th></tr>
-        {%for post in posts.items|reverse%}
+        {%set reverse_posts = posts.items%}
+        {%for post in reverse_posts%}
         <tr><td><a href="{{url_for('displayPost',id=post.id)}}">{{post.title}}</a></td><td><p>{{post.date_posted.day}}/{{post.date_posted.month}}/{{post.date_posted.year}}</p><span>   {{ post.date_posted.strftime("%H:%M") }}</span><br><a href="/user/{{users[post.ownerID-1].username}}"><small>{{users[post.ownerID-1].username}}</small></a></td></tr>
         {%endfor%}
     </table>

@@ -1,10 +1,13 @@
 import secrets
 from myappPackage.models import Product,User,Post
 from flask import render_template,request,redirect,url_for,flash,abort
-from myappPackage.forms import RegisterationForm,LoginForm,UpdateProfileForm,NewProductForm,NewPostForm,UpdatePostForm
+from myappPackage.forms import RegisterationForm,LoginForm,UpdateProfileForm,NewProductForm,NewPostForm,UpdatePostForm,SearchUsersForm,RequestPasswordResetForm,PasswordResetForm
 from myappPackage import app,bcrypt,db
 from flask_login import login_user,current_user,logout_user,login_required
 import os
+from flask_mail import Mail
+from sqlalchemy import desc
+
 
 def save_picture(form_picture):
     random_hex = secrets.token_hex(8)
@@ -74,9 +77,22 @@ def about():
 @app.route('/posts')
 def posts():
     page = request.args.get("page", 1, type=int)
-    posts = Post.query.paginate(page=page,per_page=7)
+    # posts = Post.query.paginate(page=page,per_page=7)
+    posts = Post.query.order_by(desc(Post.id)).paginate(page=page,per_page=7)
     users = User.query.all()
     return render_template('posts.html',posts=posts,users=users)
+
+@app.route('/SearchUsers',methods=['GET','POST'])
+def search_users():
+    page = request.args.get("page", 1, type=int)
+    users = User.query.paginate(page=page,per_page=5)
+    search_user_form = SearchUsersForm()
+    if search_user_form.validate_on_submit():
+        search_username = search_user_form.insertedUser.data
+        # users = User.query.filter_by(username=search_username).paginate(page=page,per_page=5)
+        users_query = User.query.filter(User.username.ilike(f"%{search_username}%"))
+        users = users_query.paginate(page=page, per_page=5)
+    return render_template('SearchUser.html',users=users,form=search_user_form)
 
 @app.route('/posts/<id>')
 def displayPost(id):
@@ -119,7 +135,7 @@ def delete_post(title):
         abort(403) #in case another user trying to access another user post
     db.session.delete(post)
     db.session.commit()
-    flash('delete dont successfully')
+    flash('delete done successfully')
     return redirect(url_for('user_posts'))
 
 
@@ -168,9 +184,51 @@ def displayuser(username):
     mydata = User.query.get_or_404(mydata_id)
     return render_template('profileView.html',mydata=mydata)
 
+@app.route('/reset_password',methods=['GET','POST'])
+def resetPassword():
+    #check that user not login 
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = RequestPasswordResetForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user:
+            #send_change_password(user)
+            flash('you will recive an email for change password,in case this account is exist!!')
+            return redirect(url_for('login'))
+    return render_template('requestResetPassword.html',form=form)
+
+@app.route('/reset_password/<token>',methods=['POST'])
+def ChangePassword(token):
+    #check that user not login 
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    user = User.verify_reset_token(token)
+    if not user:
+        flash('the token is expired')
+        return redirect(url_for('resetPassword'))
+    form = PasswordResetForm()
+    return render_template('changeForgottenPassword.html',form=form)
+
+
+
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
 
 
+@app.route('/rent')
+def rent():
+    return render_template('rent.html')
+
+
+@app.errorhandler(403)
+def error_403(error):
+    return render_template('403.html'),403
+@app.errorhandler(404)
+def error_404(error):
+    return render_template('404.html'),404
+@app.errorhandler(500)
+def error_500(error):
+    return render_template('500.html'),500

@@ -2,6 +2,7 @@
 {% include 'header.html' %}
 
 {% block title %}Home{% endblock %}
+{% block cssLink %}<link rel="stylesheet" href="{{url_for('static', filename = 'style.css')}}"> {% endblock %}
 
 {% block body %}
 

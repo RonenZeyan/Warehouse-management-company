@@ -71,3 +71,17 @@ class NewPostForm(FlaskForm):
 
 class UpdatePostForm(NewPostForm):
     submit = SubmitField('Update')
+
+class SearchUsersForm(FlaskForm):
+    insertedUser = StringField('search User: ',validators=[DataRequired(),Length(min=2,max=25)])
+    submit = SubmitField('Search')
+
+class RequestPasswordResetForm(FlaskForm):
+    email = StringField('Email: ',validators=[DataRequired(),Email()])
+    submit = SubmitField('Reset password')
+
+
+class PasswordResetForm(FlaskForm): #after send request to password, these form for change password
+    password = PasswordField('Password:',validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password:',validators=[DataRequired(),EqualTo('password')])
+    submit = SubmitField('Change password')

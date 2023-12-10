@@ -13,14 +13,13 @@ background-color: #001;
 display: flex;
 overflow-y: scroll;
 overflow-x: hidden;
-margin-top: 25px;
+margin-top: 20px;
 
 }
 
 .content{
     width: 100%;
     color:white;
-    margin: 0 10px;
     
 }
 .content .title-info{
@@ -190,215 +189,129 @@ th{
     
 }
 
-
-
-.log-in{
-
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-}
-
-.log-in a{
-
-    background-color: rgb(4,129,255);
-}
-
-.register{
-    position: absolute;
-    width: 100%;
-    bottom: 60px; 
-}
-
-
-
-
-
-
-
-
-
-
-
-/* body{
-
-background-color: #001;
-display: flex;
-
-}
-
-.content{
-    width: 100%;
-    margin:10px;
-}
-.content .title-info{
-    width:98%;
-    background-color: rgb(4,129,255);
-    display:flex;
-    justify-content: space-between;
-    margin:10px 0px;
-    padding:10px;
-    align-items: center;
-    border-radius: 10px;
-}
-
-.profile{
-    display:flex;
-    align-items: center;
-    gap:30px
-}
-
-.profile h2{
-
-    font-size: 20px;
-    text-transform: capitalize;
-}
-
-.imagebox{
-height: 50px;
-width: 50px;
-border-radius: 50%;
-overflow: hidden;
-border: 3px solid white;
-flex-shrink: 0;
-}
-
-.imagebox img{
-    width:100%;
-}
-
-
-.menu{
-    background: #123;
-    width: 60px;
-    overflow: hidden;
-    height: 100vh;
-    padding: 20px;
-    transition: .5s;
-    color:white;
-    
-
-}
-
-.menu:hover{
-    width: 260px; 
-}
-
-ul{
-    list-style: none;
-    position: relative;
-    height: 95%;
-}
-
-ul li a{
-    padding:10px;
-    margin: 10px 0;
-    display: block;
-    text-decoration: none;
-    border-radius: 8px;
+.img-info{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap:40px;
-    transition: 0.5s;
+    margin-top: 25px;
+    font-weight: bold;
 }
 
-ul li a:hover,.active,.box:hover{
+input[type="file"]::file-selector-button {
+    width: 100px;
+    height: 100px;
+    color: transparent;
+    background-image: url(images/defaultUserPhoto.png);
+    background-color: transparent;
+    background-size: cover;
+    border: none;
+  }
 
-    background-color: rgba(255, 255, 255, 0.5);
-
+.img-info img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50% 50%;
 }
-
-.log-out{
-
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-}
-
-.log-out a{
-
-    background-color: red;
-}
-
-.log-in{
-
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-}
-
-.log-in a{
-
-    background-color: rgb(4,129,255);
-}
-
-.register{
-    position: absolute;
-    width: 100%;
-    bottom: 60px; 
-}
-
-ul li a i{
-    font-size: 30px;
-}
+  
 
 
-.data-info{
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.box{
-    display: flex;
-    background-color: rgba(255, 255, 255, 0.1);
-    height: 150px;
-    flex-basis: 150px;
-    gap:30px;
-    border-radius: 8px;
-    align-items: center;
-    justify-content: space-around;
-    flex-grow: 1;
-}
-
-.box i{
-    font-size: 40px;
-}
-
-.box .data{
-    text-align: center;
-}
-
-.box .data span{
-    font-size: 32px;
-}
-
-table{
-    width: 100%;
-    text-align: center;
-    border-spacing: 8px;
-
-}
-
-td,th{
+.content form .field-info input,.content form .field-info textarea{
     background-color: #123;
     margin:10px 0;
     padding:10px;
+    width: 200px;
     border-radius: 10px;
+    font-style: italic;
+    font-weight: bold;
+    font-family: cursive;
 }
 
-th{
+form .text input{
+    background-color: #123;
+    margin:10px 0;
+    padding:10px;
+    width: 400px;
+    border-radius: 10px;
+    font-style: italic;
+    font-weight: bold;
+    font-family: cursive;
+}
+
+
+.content form .field-info textarea{
+    width: 100%;
+}
+
+.inputdanger{
+    border: 2px solid darkred;
+    
+}
+
+.content form .field-info p{
+    font-size: 10px;
+    margin-left: 180px;
+    color: darkred;
+}
+
+
+.registerButton{
+    display: flex;
+    justify-content: center;
+}
+
+.registerButton input{
+    background-color: #126;
+    width: 150px;
+    margin:10px 0;
+    
+    padding:10px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.registerButton .changeSize{
+    width: 250px;
+}
+
+
+.registerButton input:hover{
     background-color: rgb(4,129,255);
-}
-.price,.count{
-    padding: 2px;
-    border-radius: 4px;
-    background-color: green;
+    transition: .5s;
 }
 
-.count{
-    background-color: yellow;
-    color: black;
-} */
+.tableOfPosts{
+    width: 100%;
+    text-align: left;
+    border-spacing: 0;
+    
+}
+.tableOfPosts tr th{
+    width: 100%;
+    border-radius: 0px;
+}
+.tableOfPosts tr td
+{
+    background-color: #123;
+    border-radius: 0px; 
+    padding-bottom: 10px;  
+    border-bottom: 1px solid grey;  
+    padding-right: 40px;
+}
+.tableOfPosts tr td a
+{
+    color: #ffa;
+    font-weight: bold;
+    text-decoration: none; 
+    
+}
+
+.ckeditor{
+    margin: 25px;
+}
+
+
+
+

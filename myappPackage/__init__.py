@@ -14,7 +14,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['CKEDITOR_ENABLE_CODESNIPPET'] = True
 db = SQLAlchemy(app)
 app.app_context().push()
-
+app.config['MAIL_SERVER']= 'smtp.googlemail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
 bcrypt = Bcrypt(app)
 login_manger = LoginManager(app)
 ckeditor = CKEditor(app)

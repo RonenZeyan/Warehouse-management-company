@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %}<title>Search Users</title>{% endblock %}
+{% block cssLink %}<link rel="stylesheet" href="{{url_for('static', filename = 'css/style.css')}}"> {% endblock %}
+
+{% block body %}
+<div class="content" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <form action="" method="POST">
+        {{form.hidden_tag()}}
+        <div class="title-info" style="width: 500px; justify-content: center; margin: 25px 0px;">
+            <legend>Search Users</legend>
+        </div>
+        <div class="text">
+            {{form.insertedUser.label()}}
+            {{form.insertedUser()}}
+        </div>
+        <div class="registerButton" style="justify-content: end;">
+            {{form.submit()}}
+        </div>
+    </form>
+
+    <table  style="text-align: center; width: 100%; display: flex; flex-direction: column; align-items: center; ">
+            <tr>
+                <th>Users</th>
+            </tr>
+            {% if users.items %}
+            {%for user in users.items%}
+            <tr>
+                <td style="width: 250px;">
+                    <div><a style="display: flex; justify-content: space-evenly; text-decoration: none; align-items: center; font-weight: bold;" href="{{url_for('displayuser',username=user.username)}}"><img style="width:50px; height: 50px;" src="{{url_for('static',filename='images/'+user.profileIMG)}}" alt="photo"><div>{{user.username}}</div></a></div></td>
+            </tr>
+            {%endfor%}
+            {%else%}
+            <tr>
+                <td style="width: 250px;">
+                    <div><p>not found</p></div></td>
+            </tr>
+            {%endif%}
+    </table>
+
+    <nav">
+        <ul style="display: flex; justify-content: flex-end; align-items: center;">
+            {% for post_num_page in users.iter_pages() %}
+            {% if post_num_page %}
+              {% if users.page == post_num_page %}
+              <li>
+                <a style="background-color: rgb(4,129,255);" href="{{url_for('search_users',page=post_num_page)}}">{{post_num_page}}</a>
+            </li>
+              {% else %}
+                <li>
+                    <a href="{{url_for('search_users',page=post_num_page)}}">{{post_num_page}}</a>
+                </li>
+              {%endif%}
+            {%else%}
+            <span>...</span>
+            {% endif %}
+            {% endfor %}
+
+        </ul>
+    </nav>
+    
+</div>
+{% endblock %}

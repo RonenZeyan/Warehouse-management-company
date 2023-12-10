@@ -1,0 +1,15 @@
+
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %}<title>500 error</title>{% endblock %}
+{% block cssLink %}<link rel="stylesheet" href="{{url_for('static', filename = 'css/style.css')}}"> {% endblock %}
+
+{% block body %}
+
+<div style="display: flex; flex-direction: column; margin: 25px;">
+    <h1 style="margin: 25px;">Internal Server Error (500)</h1>
+    <hr>
+    <p style="margin: 25px; font-size: 25px;">Try Again...</p>
+</div>
+{% endblock %}

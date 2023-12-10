@@ -1,0 +1,27 @@
+
+.content{
+    margin:25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.card{
+    background-color: #746e6e;
+    border-radius: 5px;
+    padding: 25px;
+    border: 1px solid grey;
+    width: 250px;
+    height:400px;
+}
+
+#rentButton{
+    background-color: #261;
+    color: black;
+    font-weight: bold;
+    padding: 10px 5px;
+    border-style: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
