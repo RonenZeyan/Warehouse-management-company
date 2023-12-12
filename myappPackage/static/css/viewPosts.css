@@ -1,4 +1,4 @@
-
+/* 
 *{
     color:#fff;
     padding: 0;
@@ -148,11 +148,44 @@ input[type="file"]::file-selector-button {
     font-weight: bold;
     text-decoration: none; 
     
-}
+} */
 
 .ckeditor{
-    margin: 10px;
+    margin: 50px;
     color:#126;
+}
+
+.container{
+    display: flex; flex-direction: column;
+    margin: 50px 100px;
+    width: 80%;
+}
+
+.container .title{
+ margin-bottom: 40px;
+}
+
+.topic{
+    border: 2px gray solid;
+    display: flex;
+    margin: 10px 0;
+    
+}
+
+.topic .TopicContent{
+width: 100%;
+}
+
+.topic .TopicContent .Topicpara{
+    padding: 10px 10px;
+    width: 100%;
+}
+
+.topic .userPlace{
+    width: 20%;
+    border-right: 2px gray solid;
+    padding: 10px 20px;
+
 }
 
 

@@ -1,7 +1,7 @@
 import secrets
-from myappPackage.models import Product,User,Post
+from myappPackage.models import Product,User,Post,Comment
 from flask import render_template,request,redirect,url_for,flash,abort
-from myappPackage.forms import RegisterationForm,LoginForm,UpdateProfileForm,NewProductForm,NewPostForm,UpdatePostForm,SearchUsersForm,RequestPasswordResetForm,PasswordResetForm
+from myappPackage.forms import RegisterationForm,LoginForm,UpdateProfileForm,NewProductForm,NewPostForm,UpdatePostForm,SearchUsersForm,RequestPasswordResetForm,PasswordResetForm,NewCommentForm
 from myappPackage import app,bcrypt,db
 from flask_login import login_user,current_user,logout_user,login_required
 import os
@@ -97,7 +97,28 @@ def search_users():
 @app.route('/posts/<id>')
 def displayPost(id):
     mydata = Post.query.get_or_404(id)
-    return render_template('postView.html',mydata=mydata)
+    user= User.query.filter_by(id=mydata.ownerID).first()
+    page = request.args.get("page", 1, type=int)
+    comment = Comment.query.filter_by(postID=id).paginate(page=page,per_page=5)
+    form = NewCommentForm()
+    if form.validate_on_submit():
+        pass
+    return render_template('postView.html',mydata=mydata,user=user,form=form,comments=comment)
+
+@app.route('/posts/create_post', methods=['GET','POST'])
+@login_required
+def create_post():
+    new_post_form = NewPostForm()
+    if new_post_form.validate_on_submit():
+        postTitle = new_post_form.title.data
+        post = Post(title=postTitle,content=new_post_form.content.data,ownerID=current_user.id)
+        db.session.add(post)
+        db.session.commit()
+        flash('your Post added successfully')
+        return redirect(url_for("posts"))
+
+    return render_template('create_post.html',form=new_post_form)
+
 
 @app.route('/posts/user_posts',methods=['GET','POST'])
 def user_posts():
@@ -137,22 +158,6 @@ def delete_post(title):
     db.session.commit()
     flash('delete done successfully')
     return redirect(url_for('user_posts'))
-
-
-
-@app.route('/posts/create_post', methods=['GET','POST'])
-@login_required
-def create_post():
-    new_post_form = NewPostForm()
-    if new_post_form.validate_on_submit():
-        postTitle = new_post_form.title.data
-        post = Post(title=postTitle,content=new_post_form.content.data,ownerID=current_user.id)
-        db.session.add(post)
-        db.session.commit()
-        flash('your Post added successfully')
-        return redirect(url_for("posts"))
-
-    return render_template('create_post.html',form=new_post_form)
 
 
 @app.route('/updateProfile',methods=['GET','POST'])

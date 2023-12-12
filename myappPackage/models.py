@@ -59,10 +59,22 @@ class Post(db.Model):
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
     ownerID = db.Column(db.Integer,db.ForeignKey("user.id"),nullable=False)
+    comments = db.relationship('Comment',backref='CommentOwner',lazy=True) 
 
-    
+
     def __init__(self,title,content,ownerID):
         self.title=title
+        self.content=content
+        self.ownerID=ownerID
+
+class Comment(db.Model):
+    id= db.Column(db.Integer,primary_key=True)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    content = db.Column(db.Text, nullable=False)
+    ownerID = db.Column(db.Integer,db.ForeignKey("user.id"),nullable=False)
+    postID = db.Column(db.Integer,db.ForeignKey("post.id"),nullable=False)
+
+    def __init__(self,content,ownerID):
         self.content=content
         self.ownerID=ownerID
 

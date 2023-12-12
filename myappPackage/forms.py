@@ -67,6 +67,10 @@ class NewPostForm(FlaskForm):
     content = CKEditorField('Content Title:',validators=[DataRequired()],render_kw={'rows': '30'})
     submit = SubmitField('Post')
 
+class NewCommentForm(FlaskForm):
+    content = CKEditorField('Add Comment:',validators=[DataRequired()],render_kw={'rows': '20'})
+    submit = SubmitField('add Comment')
+
 
 
 class UpdatePostForm(NewPostForm):

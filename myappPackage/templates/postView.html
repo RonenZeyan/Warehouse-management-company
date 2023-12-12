@@ -5,11 +5,75 @@
 {% block cssLink %}<link rel="stylesheet" href="{{url_for('static', filename = 'css/viewPosts.css')}}"> {% endblock %}
 
 {% block body %}
-<div class="ckeditor">
+
+<div class="container">
+    <div class="title"><h3>{{mydata.title}}</h3>
+        <p style="margin-top: 15px;"><span> <i class="fas fa-user"></i> {{user.username}}</span><span> <i class="fas fa-clock"></i>  {{mydata.date_posted.day}}/{{mydata.date_posted.month}}/{{mydata.date_posted.year}}</span></p>
+    </div>
+    <div class="topic">
+        <div class="userPlace">
+            <img style="width: 100px; height: 100px;" src="../static/images/defaultUserPhoto.png" alt="error">
+            <p style="text-align: center;">{{user.username}}</p>
+        </div>
+        <div class="TopicContent">
+            <p>Lorem ipsum dolor sit amet.</p>
+            <hr>
+            <p class="Topicpara">{{mydata.content|safe}}
+            </p>
+        </div>
+    </div>
+    <!-- this for comment -->
+    <div class="topic">
+        <div class="userPlace">
+            <img style="width: 100px; height: 100px;" src="../static/images/defaultUserPhoto.png" alt="error">
+            <p style="text-align: center;">user of comment</p>
+        </div>
+        <div class="TopicContent">
+            <p>time and hashtag id</p>
+            <hr>
+            <p class="Topicpara">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam veniam magni quasi enim amet iure reprehenderit qui sint, neque reiciendis id aspernatur sed alias et molestias officiis consectetur ea. Beatae excepturi voluptatum reiciendis illum earum nesciunt delectus cum obcaecati saepe distinctio inventore fugiat facilis, libero, provident laboriosam culpa rem ut.</p>
+        </div>
+    </div>
+
+        {% if comments%}
+            {% for comment in comments%}
+                <!-- this for comment -->
+                <div class="topic">
+                    <div class="userPlace">
+                        <img style="width: 100px; height: 100px;" src="../static/images/defaultUserPhoto.png" alt="error">
+                        <p style="text-align: center;">user of comment</p>
+                    </div>
+                    <div class="TopicContent">
+                        <p>time and hashtag id</p>
+                        <hr>
+                        <p class="Topicpara">{{comment.content|safe}}</p>
+                    </div>
+                </div>
+            {%endfor%}
+        {%endif%}
+
+    <div class="topic">
+        <form action="" method="POST">
+            {{form.hidden_tag()}}
+            <div>
+                {{form.content.label()}}
+                {{form.content()}}
+            </div>
+            <div class="registerButton">
+                {{form.submit()}}
+            </div>
+        </form>    
+        {{ckeditor.load(custom_url=url_for('static',filename='ckeditor/ckeditor.js'))}}
+        {{ckeditor.config(name='content')}}
+    </div>
+</div>
+
+
+<!-- <div class="ckeditor">
     {{mydata.title}}
     <hr>
     {{mydata.content|safe}}
-</div>
+</div> -->
 
 
 {% endblock %}

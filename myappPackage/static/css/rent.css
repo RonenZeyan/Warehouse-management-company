@@ -1,6 +1,6 @@
 
 .content{
-    margin:25px;
+    
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,20 +8,58 @@
 }
 
 .card{
-    background-color: #746e6e;
-    border-radius: 5px;
-    padding: 25px;
-    border: 1px solid grey;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 2px solid grey;
     width: 250px;
-    height:400px;
+    height:300px;
+    color: #000;
+}
+
+.card:hover{
+    transform: translateY(-7px);
+    transition:.5s;
 }
 
 #rentButton{
-    background-color: #261;
+    background-color: rgb(122, 131, 253);
     color: black;
     font-weight: bold;
+    font-size: 16px;
     padding: 10px 5px;
     border-style: none;
     border-radius: 5px;
     cursor: pointer;
+    width: 95%;
+    margin:0 6px;
+}
+
+#rentButton:hover{
+    background-color: rgb(0, 17, 255); 
+}
+
+.content .card .title{
+    border-bottom: 1px solid gray;
+    width: 100%;
+    background-color: rgb(226, 226, 226);
+    padding: 10px 0;
+    border-radius: 8px;
+    border-bottom-left-radius:0 ;
+    border-bottom-right-radius:0 ;
+}
+
+.content .card ul li,.content .card ul li h4{
+    color:#000;
+}
+
+.content .card ul li h4{
+    font-size: 35px;
+    padding: 10px 15px;
+}
+
+.content .card .title h3{
+    text-align: center;
+    padding: 5px 10px;
+    font-size: 25px;
+    color: #000;
 }
