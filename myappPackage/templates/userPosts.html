@@ -18,7 +18,7 @@
     <table class="tableOfPosts">
         <tr><th>posts</th><th>action</th></tr>
         {%for post in posts.items|reverse%}
-        <tr><td><a href="{{url_for('displayPost',id=post.id)}}">{{post.title}}</a></td><td><a style="color: #fff;background-color: rgb(4,129,255); margin: 0 10px; padding:5px 10px; border-radius: 5px;" href="{{url_for('update_post',title=post.title)}}">Update</a><a style="color: #fff;background-color: red; padding:5px 10px; border-radius: 5px;" href="{{url_for('delete_post',title=post.title)}}">Delete</a></td></tr>
+        <tr><td><a href="{{url_for('displayPost',id=post.id)}}">{{post.title}}</a></td><td><a style="color: #fff;background-color: rgb(4,129,255); margin: 0 10px; padding:5px 10px; border-radius: 5px;" href="{{url_for('update_post',title=post.title)}}">Update</a><a id="deleteBut" onclick="Confirm()" href="{{url_for('delete_post',title=post.title)}}" style="color: #fff;background-color: red; padding:5px 10px; border-radius: 5px;">Delete</a></td></tr>
         {%endfor%}
     </table>
     <nav">
@@ -44,5 +44,6 @@
 
 </div>
 
+<script src="../static/js/postCont.js"></script>
 
 {% endblock %}

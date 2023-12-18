@@ -1,6 +1,6 @@
 import secrets
 from myappPackage.models import Product,User,Post,Comment
-from flask import render_template,request,redirect,url_for,flash,abort
+from flask import render_template,request,redirect,url_for,flash,abort,jsonify
 from myappPackage.forms import RegisterationForm,LoginForm,UpdateProfileForm,NewProductForm,NewPostForm,UpdatePostForm,SearchUsersForm,RequestPasswordResetForm,PasswordResetForm,NewCommentForm
 from myappPackage import app,bcrypt,db
 from flask_login import login_user,current_user,logout_user,login_required
@@ -226,6 +226,17 @@ def logout():
 @app.route('/rent')
 def rent():
     return render_template('rent.html')
+
+
+@app.route('/get_data/<username>', methods=['GET','POST'])
+def get_data(username):
+    x = User.query.filter_by(username=username).first()
+    if x:
+        data = {"DONT":"yesUser"}
+    else:
+        data = {"DONT":"noUser"}
+    return jsonify(data)
+
 
 
 @app.errorhandler(403)

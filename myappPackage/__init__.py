@@ -9,7 +9,7 @@ from flask_ckeditor import CKEditor
 app = Flask(__name__)
 app.secret_key='Secret Key'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@localhost/crud'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@localhost/warehousedb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['CKEDITOR_ENABLE_CODESNIPPET'] = True
 db = SQLAlchemy(app)

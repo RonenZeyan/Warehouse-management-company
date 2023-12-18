@@ -93,6 +93,37 @@
     </div>
 
 
-
+<script>
+    var usernameInput = document.getElementById("{{ form.Username.id }}");
+    warningSpan = document.createElement("span");
+    usernameInput.addEventListener('change',function(){
+    data = usernameInput.value
+    url = "/get_data/" + data;
+    var httpObj = new XMLHttpRequest();
+    httpObj.onreadystatechange = function() {
+        if (httpObj.readyState == 4 && httpObj.status == 200) {
+            myobj = JSON.parse(httpObj.response)
+            if(myobj.DONT=="yesUser")
+            {
+            usernameInput.style.border = '1px solid red'
+            // usernameInput.outerHTML+='<span id="warning" style="color: red; text-align: center;"">please change another name</span>'
+            warningSpan.id = "warning";
+            warningSpan.style.color = "red";
+            warningSpan.textContent = "Please choose another name";
+            usernameInput.parentNode.appendChild(warningSpan);
+            }
+            else
+            {
+                var existingSpan = document.getElementById("warning");
+                usernameInput.style.border = '1px solid green'
+                warningSpan.remove()
+                // usernameInput.outerHTML+='<span style="color: red; text-align: center;"">please change another name</span>'
+            }
+        }    
+    };
+    httpObj.open("GET",url, true);
+    httpObj.send();
+    });
+</script>
 
 {% endblock %}
