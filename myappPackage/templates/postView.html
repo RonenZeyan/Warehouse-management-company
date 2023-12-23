@@ -8,12 +8,12 @@
 
 <div class="container">
     <div class="title"><h3>{{mydata.title}}</h3>
-        <p style="margin-top: 15px;"><span> <i class="fas fa-user"></i> {{user.username}}</span><span> <i class="fas fa-clock"></i>  {{mydata.date_posted.day}}/{{mydata.date_posted.month}}/{{mydata.date_posted.year}}</span></p>
+        <p style="margin-top: 15px;"><span> <i class="fas fa-user"></i><a href="{{url_for('displayuser',username=user.username)}}">{{user.username}}</a></span><span> <i class="fas fa-clock"></i>  {{mydata.date_posted.day}}/{{mydata.date_posted.month}}/{{mydata.date_posted.year}}</span></p>
     </div>
     <div class="topic">
         <div class="userPlace">
             <img style="width: 100px; height: 100px;" src="../static/images/defaultUserPhoto.png" alt="error">
-            <p style="text-align: center;">{{user.username}}</p>
+            <p style="text-align: center;"><a href="{{url_for('displayuser',username=user.username)}}">{{user.username}}</a></p>
         </div>
         <div class="TopicContent">
             <p>Lorem ipsum dolor sit amet.</p>
@@ -22,7 +22,7 @@
             </p>
         </div>
     </div>
-    <!-- this for comment -->
+    <!-- this for comment
     <div class="topic">
         <div class="userPlace">
             <img style="width: 100px; height: 100px;" src="../static/images/defaultUserPhoto.png" alt="error">
@@ -33,7 +33,7 @@
             <hr>
             <p class="Topicpara">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam veniam magni quasi enim amet iure reprehenderit qui sint, neque reiciendis id aspernatur sed alias et molestias officiis consectetur ea. Beatae excepturi voluptatum reiciendis illum earum nesciunt delectus cum obcaecati saepe distinctio inventore fugiat facilis, libero, provident laboriosam culpa rem ut.</p>
         </div>
-    </div>
+    </div> -->
 
         {% if comments%}
             {% for comment in comments%}
@@ -41,7 +41,7 @@
                 <div class="topic">
                     <div class="userPlace">
                         <img style="width: 100px; height: 100px;" src="../static/images/defaultUserPhoto.png" alt="error">
-                        <p style="text-align: center;">user of comment</p>
+                        <p style="text-align: center;"><a href="{{url_for('displayuser',username=users[comment.ownerID-1].username)}}">{{users[comment.ownerID-1].username}}</a></p>
                     </div>
                     <div class="TopicContent">
                         <p>time and hashtag id</p>
@@ -66,6 +66,30 @@
         {{ckeditor.load(custom_url=url_for('static',filename='ckeditor/ckeditor.js'))}}
         {{ckeditor.config(name='content')}}
     </div>
+    <nav">
+    <ul style="display: flex; justify-content: flex-end; align-items: center;">
+        {% for post_num_page in comments.iter_pages() %}
+        {% if post_num_page %}
+          {% if comments.page == post_num_page %}
+          <li>
+            {%if comments %}
+            <a style="background-color: rgb(4,129,255);" href="{{url_for('displayPost',id=id.postID,page=post_num_page)}}">{{post_num_page}}</a>
+            {%endif%}
+        </li>
+          {% else %}
+            <li>
+                {%if comments %}
+                <a href="{{url_for('displayPost',id=id,page=post_num_page)}}">{{post_num_page}}</a>
+                {%endif%}
+            </li>
+          {%endif%}
+        {%else%}
+        <span>...</span>
+        {% endif %}
+        {% endfor %}
+
+    </ul>
+</nav>
 </div>
 
 

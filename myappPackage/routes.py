@@ -94,16 +94,20 @@ def search_users():
         users = users_query.paginate(page=page, per_page=5)
     return render_template('SearchUser.html',users=users,form=search_user_form)
 
-@app.route('/posts/<id>')
+@app.route('/posts/<id>', methods=['GET','POST'])
 def displayPost(id):
     mydata = Post.query.get_or_404(id)
     user= User.query.filter_by(id=mydata.ownerID).first()
     page = request.args.get("page", 1, type=int)
     comment = Comment.query.filter_by(postID=id).paginate(page=page,per_page=5)
+    users = User.query.all()
     form = NewCommentForm()
     if form.validate_on_submit():
-        pass
-    return render_template('postView.html',mydata=mydata,user=user,form=form,comments=comment)
+        commenting=Comment(content=form.content.data,ownerID=current_user.id,postID=id) 
+        db.session.add(commenting)
+        db.session.commit()
+        return redirect(url_for('displayPost',id=id))
+    return render_template('postView.html',mydata=mydata,user=user,form=form,comments=comment,users=users,id=id)
 
 @app.route('/posts/create_post', methods=['GET','POST'])
 @login_required
@@ -226,6 +230,18 @@ def logout():
 @app.route('/rent')
 def rent():
     return render_template('rent.html')
+
+@app.route('/rent/rentNow/<StorageType>')
+def rentNow(StorageType):
+    pass
+    # mydata = Post.query.get_or_404(id)
+    # user= User.query.filter_by(id=mydata.ownerID).first()
+    # page = request.args.get("page", 1, type=int)
+    # comment = Comment.query.filter_by(postID=id).paginate(page=page,per_page=5)
+    # form = NewCommentForm()
+    # if form.validate_on_submit():
+    #     pass
+    # return render_template('postView.html',mydata=mydata,user=user,form=form,comments=comment)
 
 
 @app.route('/get_data/<username>', methods=['GET','POST'])
